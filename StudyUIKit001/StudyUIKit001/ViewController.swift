@@ -8,7 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     // じゃんけんの手の種類
     enum JankenType: String {
         case gu = "ぐー"
@@ -24,14 +23,22 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    // じゃけんの結果を表示
-    @IBOutlet weak var jankenResult: UILabel!
+    @IBOutlet weak var answerImageView: UIImageView!
     
-    @IBAction func jankenButton(_ sender: UIButton) {
-        jankenResult.text = makeJanken().rawValue
+    @IBOutlet weak var answerLavel: UILabel!
+    
+    // ジャンケンボタン
+    @IBAction func shuffleAction(_ sender: Any) {
+        // じゃんけんの手のテキストと画像
+        let jankenResult = makeJanken()
+        // テキストを更新
+        answerLavel.text = jankenResult.type
+        // 画像を更新
+        answerImageView.image = UIImage(named: jankenResult.image)
     }
+    
     // じゃんけんのメソッド
-    func makeJanken() -> JankenType {
+    func makeJanken() -> (type: String, image: String) {
         var jankenResult: JankenType = .gu
         // ランダムな数値を算出
         let randomNumber = Int.random(in: 0...2)
@@ -45,7 +52,7 @@ class ViewController: UIViewController {
         }
         
         // じゃんけんの結果を出力
-        return jankenResult
+        return (jankenResult.rawValue, "")
     }
 }
 
