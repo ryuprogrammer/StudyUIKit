@@ -34,25 +34,34 @@ class ViewController: UIViewController {
         // テキストを更新
         answerLavel.text = jankenResult.type
         // 画像を更新
-        answerImageView.image = UIImage(named: jankenResult.image)
+        answerImageView.image = UIImage(named: jankenResult.imageName)
     }
     
     // じゃんけんのメソッド
-    func makeJanken() -> (type: String, image: String) {
+    func makeJanken() -> (type: String, imageName: String) {
         var jankenResult: JankenType = .gu
+        var imageName: String = "gu"
         // ランダムな数値を算出
         let randomNumber = Int.random(in: 0...2)
         
         // ランダムな数値とじゃんけんの結果を適用
         switch randomNumber {
-        case 0: jankenResult = .gu
-        case 1: jankenResult = .choki
-        case 2: jankenResult = .pa
-        default: jankenResult = .gu
+        case 0:
+            jankenResult = .gu
+            imageName = "gu"
+        case 1:
+            jankenResult = .choki
+            imageName = "choki"
+        case 2:
+            jankenResult = .pa
+            imageName = "pa"
+        default:
+            jankenResult = .gu
+            imageName = "gu"
         }
         
         // じゃんけんの結果を出力
-        return (jankenResult.rawValue, "")
+        return (jankenResult.rawValue, imageName)
     }
 }
 
