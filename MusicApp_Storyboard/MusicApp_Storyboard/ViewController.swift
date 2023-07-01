@@ -11,9 +11,11 @@ import AVFoundation
 class ViewController: UIViewController {
     
     // ギター音源データの読み込み
-    let guitarData = NSDataAsset(name: "guitarSound")!.data
-    // ギター用プレーヤーの変数
-    var soundPlayer: AVAudioPlayer!
+    let guitarPath = Bundle.main.bundleURL.appendingPathComponent("guitarSound")
+    var guitarPlayer = AVAudioPlayer()
+    // シンバル音源データの読み込み
+    let cymbalPath = Bundle.main.bundleURL.appendingPathComponent("cymbalSound")
+    var cymbalPlayer = AVAudioPlayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +23,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func guitar(_ sender: UIButton) {
-        soundPlay(data: guitarData)
+        soundPlay(path: guitarPath, soundPlayer: &guitarPlayer)
     }
     
     @IBAction func cymbal(_ sender: UIButton) {
+        soundPlay(path: cymbalPath, soundPlayer: &cymbalPlayer)
     }
     
     @IBAction func playSound(_ sender: UIButton) {
@@ -33,23 +36,14 @@ class ViewController: UIViewController {
     @IBAction func stopSound(_ sender: UIButton) {
     }
     
-    func soundPlay(data: Data) {
+    func soundPlay(path: URL, soundPlayer:inout AVAudioPlayer) {
         do {
-            soundPlayer = try AVAudioPlayer(data: data)
+            soundPlayer = try AVAudioPlayer(contentsOf: path, fileTypeHint: nil)
+            soundPlayer.stop()
+            soundPlayer.currentTime = 0.0
             soundPlayer.play()
         } catch {
-            print("プレーヤーでエラー")
+            print("えらー")
         }
     }
-    
-//    // 共通のプレーヤー再生処理
-//    fileprivate func soundPlayer(player:inout AVAudioPlayer, path: URL, count: Int) {
-//        do {
-//            player = try AVAudioPlayer(contentsOf: path, fileTypeHint: nil)
-//            player.numberOfLoops = count
-//            player.play()
-//        } catch {
-//            print("player is error: \(error)")
-//        }
-//    }
 }
