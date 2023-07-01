@@ -14,7 +14,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // Text
+        // Text Fieldのdelegate通知先を設定
+        inputText.delegate = self
     }
 
     @IBOutlet weak var inputText: UITextField!
