@@ -29,5 +29,6 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var timerSettingPicker: UIPickerView!
     
     @IBAction func decsionButtonAction(_ sender: Any) {
+        // UserDefaultに保存される
     }
 }
