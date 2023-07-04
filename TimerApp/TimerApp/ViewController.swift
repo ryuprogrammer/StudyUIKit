@@ -71,6 +71,22 @@ class ViewController: UIViewController {
         }
     }
     
+    // タイマーが実行中かチェック
+    private func checkTimer(timer: Timer?) -> Bool {
+        // タイマーが実行中かのプロパティ
+        var isActivate = false
+        
+        // timerをアンラップしてnowTimerに代入
+        if let nowTimer = timer {
+            // もしタイマーが実行中ならisActivateを変更
+            if nowTimer.isValid {
+                // 実行中に変更
+                isActivate = true
+            }
+        }
+        return isActivate
+    }
+    
     // 画面を更新する（戻り値：remainCount：残り時間）
     func displayUpdate() -> Int {
         // UserDefaultsのインスタンス生成
