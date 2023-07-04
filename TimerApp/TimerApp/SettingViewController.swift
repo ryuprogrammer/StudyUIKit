@@ -51,4 +51,14 @@ class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBAction func decsionButtonAction(_ sender: Any) {
         // UserDefaultに保存される
     }
+    
+    // UIPickerViewの列数を設定
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // UIPickerViewの行数を取得
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return settingArray.count
+    }
 }
