@@ -24,12 +24,6 @@ class ViewController: UIViewController {
         let settings = UserDefaults.standard
         // UserDefaultsに初期値を登録
         settings.register(defaults: [settingKey: 10])
-        
-        // 遅延処理
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            // 画面遷移を行う
-            self.performSegue(withIdentifier: "goSetting", sender: nil)
-        }
     }
 
     @IBOutlet weak var countDownLabel: UILabel!
